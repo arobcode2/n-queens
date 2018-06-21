@@ -17,19 +17,19 @@ window.avoidsCollision = function(matrix, x, y){
 
   var [startX, startY] = [x, y]
 
-  while ( matrix[x--][y--] !== undefined ) {
+  while ( matrix[x--] !== undefined && matrix[x][y--] !== undefined ) {
     if (matrix[x][y]) return false;
   };
 
   [x, y] = [startX, startY];
-  while ( matrix[x--][y++] !== undefined ) {
+  while ( matrix[x--] !== undefined && matrix[x][y++] !== undefined ) {
     if ( matrix[x][y] ) return false;
   };
 
 
   [x, y] = [startX, startY];
-  while ( matrix[x--][y] !== undefined ) {
-    if (matrix[x][y]) return false;
+  while ( matrix[x--] !== undefined && matrix[x][y] !== undefined ) {
+    if ( matrix[x][y]) return false;
   };  
 return true;
 };

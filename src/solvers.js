@@ -13,10 +13,32 @@
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n rooks placed such that none of them can attack each other
 
+window.avoidsCollision = function(matrix, x, y){
 
+  var [startX, startY] = [x, y]
+
+  while ( matrix[x--][y--] !== undefined ) {
+    if (matrix[x][y]) return false;
+  };
+
+  [x, y] = [startX, startY];
+  while ( matrix[x--][y++] !== undefined ) {
+    if ( matrix[x][y] ) return false;
+  };
+
+
+  [x, y] = [startX, startY];
+  while ( matrix[x--][y] !== undefined ) {
+    if (matrix[x][y]) return false;
+  };  
+return true;
+};
 
 window.findNRooksSolution = function(n) {
   var solution = undefined; //fixme
+
+  //need a function for taking in a board or a row
+  //
 
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
   return solution;

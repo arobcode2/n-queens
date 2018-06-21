@@ -78,22 +78,22 @@
     //
     // test if a specific row on this board contains a conflict
     
-    horizontalizer: function() {
-      var newRows = {};
-      var n = this.get('n');
-      var rows = Object.values(this.attributes);
-      for (var i = 0; i < rows.length; i++) {
+    // horizontalizer: function() {
+    //   var newRows = {};
+    //   var n = this.get('n');
+    //   var rows = Object.values(this.attributes);
+    //   for (var i = 0; i < rows.length; i++) {
         
-        newRows[i] = [];
+    //     newRows[i] = [];
         
-        for (let nested of rows) {
-          newRows[i].push(nested[i])
-        }
-      }
-      var obj = {attributes: newRows};
+    //     for (let nested of rows) {
+    //       newRows[i].push(nested[i])
+    //     }
+    //   }
+    //   var obj = {attributes: newRows};
       
-      return obj;
-    },
+    //   return obj;
+    // },
     
     hasRowConflictAt: function(rowIndex) {
       var count = 0;
@@ -178,32 +178,66 @@
     // --------------------------------------------------------------
     //
     // test if a specific major diagonal on this board contains a conflict
-    hasMajorDiagonalConflictAt: function(colI, row = 0) {
-      var count = 0;
-      var n = this.get('n');
-      for (var i = 0; colI < n; i++, colI++) {
-        if (this.attributes[i][colI] === 1) {
-          count++;
-        }
-      }
-      if (count >= 2) {
-        return true
-      }
+    hasMajorDiagonalConflictAt: function(x) {
+      // // var count = 0;
+      // // var n = this.get('n');
+      // // for (var i = 0; colI < n; i++, colI++) {
+      // //   if (this.attributes[i][colI] === 1) {
+      // //     count++;
+      // //   }
+      // // }
+      // // if (count >= 2) {
+      // //   return true
+      // // }
+      // var y = 0;
+      // var matrix = [];
+      // var count = 0;
+      // var table = this.attributes;
+      // matrix[0] = table[0];
+      // for (var i = 0; i < this.get('n'); i++) {
+      //   matrix[i] = table[i];
+      // }
+      // while(matrix[y] !== undefined && matrix[y][x] !== undefined) {
+      //   if (matrix[y][x] === 1) {
+      //     count++;
+      //   }
+      //   x++;
+      //   y++;
+      // }
+      // if (count > 1) {
+      //   return true;
+      // }
       return false; // fixme
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      //call the slice function (n - 2 times)
-      var flag = false;
-      var n = this.get('n');
-      //var sliceCount = 0;
-      for (var sliceCount = 0; sliceCount < ) {
-        for (var i = 0; i < n; i++) {
-          flag = hasMajorDiagonalConflictAt(i);
-        }
-      }
-      return flag; // fixme
+      // //call the slice function (n - 2 times)
+      // var flag = false;
+      // var matrix = [];
+      // var table = this.attributes;
+      // var n = this.get('n');
+
+      // for (var i = 0; i < this.get('n'); i++) {
+      //   matrix[i] = table[i];
+      // }
+      // //var sliceCount = 0;
+
+      
+
+      // for (var sliceCount = 0; sliceCount < n - 2; sliceCount++) {
+      //   var obj = {attributes: matrix}
+      //   for (var j = 0; j < n; j++) {         
+      //     if (this.hasMajorDiagonalConflictAt.call(obj, j)) {
+      //       return true;
+      //     }
+      //     console.log(matrix)
+      //   }
+      //     matrix = matrix.slice(1);
+      // }
+        
+      
+      return false; // fixme
     },
 
 
@@ -212,7 +246,25 @@
     // --------------------------------------------------------------
     //
     // test if a specific minor diagonal on this board contains a conflict
-    hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
+    hasMinorDiagonalConflictAt: function(x) {
+      var y = 0;
+      var matrix = [];
+      var count = 0;
+      var table = this.attributes;
+      matrix[0] = table[0];
+      for (var i = 0; i < this.get('n'); i++) {
+        matrix[i] = table[i];
+      }
+      while(matrix[x][y] !== undefined) {
+        if (matrix[x][y] === 1) {
+          count++;
+        }
+        x++;
+        y--;
+      }
+      if (count > 1) {
+        return true;
+      }
       return false; // fixme
     },
 
